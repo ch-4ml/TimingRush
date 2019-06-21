@@ -10,7 +10,7 @@ server.listen(3000, err => {
 });
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/index1.html');
 });
 // Socket.io 서버
 const io = require('socket.io')(server);
