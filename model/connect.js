@@ -1,4 +1,4 @@
-var mysql = requrie('mysql2');
+var mysql = require('mysql2');
 var config = {
     host : 'timingrush.crhxm1oyakyu.ap-northeast-2.rds.amazonaws.com',
     user : 'admin',
