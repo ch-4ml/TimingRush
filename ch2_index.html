@@ -4,14 +4,16 @@
     <meta charset="utf-8">
     <title>chat</title>
     <style>
-      .chat_log{ width: 95%; height: 200px; }
+      .game_box{ width: 100%; height: 400px; }
+      .chat_log{ width: 100%; height: 500px; }
       .name{ width: 10%; }
-      .message{ width: 70%; }
+      .message{ width: 78.5%; }
       .chat{ width: 10%; }
     </style>
   </head>
   <body>
     <div>
+      <textarea id="gameBox" class="game_box" readonly></textarea>
       <textarea id="chatLog" class="chat_log" readonly></textarea>
     </div>
     <form id="chat">
