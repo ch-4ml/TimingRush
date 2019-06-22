@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>Timing Rush - Datatable</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<header id="header">
+</header>
+
+<body>
+    <section class="wrapper style2">
+
+        <div class="inner2">
+            <section>
+                <div class="box">
+                    <div class="content">
+                        <h2>데이터 테이블</h2>
+                        <br>
+                        <br>
+                        <form method="post" action="#">
+                            <div class="row uniform">
+                                <div class="9u 12u$(small)">
+                                    <input type="text" name="query" id="query" value="" placeholder="Query" />
+                                </div>
+                                <div class="3u$ 12u$(small)">
+                                    <input type="submit" value="Search" class="fit" />
+                                </div>
+                            </div>
+                        </form>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>유저번호</th>
+                                    <th>게임번호</th>
+                                    <th>닉네임</th>
+                                    <th>시간</th>
+                                    <th>금액</th>
+                                    <th>당첨여부</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <% data.forEach(function (item,index){ %>
+                                <tr>
+                                    <td>
+                                        <%= item.id %>
+                                    </td>
+                                    <td>
+                                        <a href='/detail/<%= item.id %>'><%= item.name %></a>
+                                    </td>
+                                    <td>
+                                        <%= item.modelnumber %>
+                                    </td>
+                                    <td>
+                                        <%= item.series %>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <% })%>
+                            </tbody>
+                        </table>
+
+
+                        <!-- <div class="container">
+                            <ul class="pager"> -->
+
+
+                        <!-- 
+                    <%
+        var curSet = pasing.curSet
+        var endPage = pasing.endPage
+        var startPage = pasing.startPage
+        var totalSet = pasing.totalSet
+        var totalPage = pasing.totalPage
+        var page_list_size = pasing.page_list_size
+        var page_size = pasing.page_size
+        var curPage = pasing.curPage
+        %>
+        
+        
+                    <%
+        if(curSet > 1){
+        %>
+        
+                    <li value=(startPage -1) class="previous">
+                        <a href='/pasing/<%= ( startPage - 1) %>'>이전페이지</a>
+                    </li>
+        
+                    <%
+        }
+        %>
+        
+        
+                    <%
+        for(var i = startPage; i <= endPage; i++){
+        if(i > totalPage){break;}
+        
+        if(i == curPage){
+        %>
+                    <li value=<%= i %> class=''>
+                        <a href='/pasing/<%= i %>'>
+                            <%= i %>
+                        </a>
+                    </li>
+        
+                    <%
+        }else{
+        %>
+        
+                    <li value=<%= i %> class='active'>
+                        <a href='/pasing/<%= i %>'>
+                            <%= i %>
+                        </a>
+                    </li>
+        
+        
+                    <%
+        }
+        %>
+        
+                    <%
+        }
+        %>
+        
+                    <%
+        if(curSet < totalSet){
+        %>
+                    <li value=( endPage + 1) class="next">
+                        <a href='/pasing/<%= ( endPage + 1) %>'>다음페이지</a>
+                    </li>
+                    <%
+        }
+        %> -->
+
+                        <!-- </ul>
+            </div>
+        
+            <br>
+            <br> -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </section>
+
+</body>
+
+</html>
