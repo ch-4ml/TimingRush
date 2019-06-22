@@ -1,2 +1,4 @@
 const express = require('express');
-const router = express.Router();
+const gameRouter = express.Router();
+
+module.exports = gameRouter;
