@@ -4,16 +4,10 @@ const userModel = require('../model/user_model');
 
 // SELECTALL
 userRouter.get('/user', (req, res) => {
-    userModel.selectAll((err, results) => {
-        if(err) {
-            console.log('SELECT ERROR');
-            res.status(500).send('ERROR');
-            return;
-        }
-        res.send({
-            count: results.count,
-            data: results
-        });
+    userModel.selectAll().then(result => {
+        res.status(200).send({result: result[0]});
+    }).catch(err => {
+        res.status(500).send({err: err});
     });
 });
 
@@ -29,7 +23,7 @@ userRouter.post('/user', (req, res) => {
     };
 
     userModel.insert(user).then(result => {
-        res.send('CREATE SUCCESS: ', result);
+        res.status(200).send({result: result});
     }).catch(err => {
         res.status(500).send({err: err});
     });
@@ -48,7 +42,7 @@ userRouter.post('/user/:no', (req, res) => {
     };
 
     userModel.update(user).then(result => {
-        res.send('UPDATE SUCCESS: ', result);
+        res.status(200).send({result: result});
     }).catch(err => {
         res.status(500).send({err: err});
     });
@@ -58,7 +52,7 @@ userRouter.post('/user/:no', (req, res) => {
 userRouter.get('/user/:no', (req, res) => {
     const no = req.params.no;
     userModel.delete(no).then(result => {
-        res.send('DELETE SUCCESS: ', result);
+        res.status(200).send({result: result});
     }).catch(err => {
         res.status(500).send({err: err});
     });
