@@ -20,7 +20,26 @@ userRouter.post('/user', (req, res) => {
     });
 });
 
-// UPDATE
+// SELECTALL
+userRouter.get('/user', (req, res) => {
+    userModel.selectAll().then(result => {
+        res.status(200).send({result: result[0]});
+    }).catch(err => {
+        res.status(500).send({err: err});
+    });
+});
+
+// SELECTONE
+userRouter.get('/user/:no', (req, res) => {
+    const user_no = req.params.no;
+    userModel.selectOne(user_no).then(result => {
+        res.status(200).send({result: result});
+    }).catch(err => {
+        res.status(500).send({err: err});
+    });
+})
+
+// UPDATE(투자 시 접근)
 userRouter.post('/user/:no', (req, res) => {
     const user = {
         no: req.params.no, 
@@ -37,7 +56,7 @@ userRouter.post('/user/:no', (req, res) => {
 });
 
 // DELETE
-userRouter.get('/user/:no', (req, res) => {
+userRouter.get('/deleteUser/:no', (req, res) => {
     const no = req.params.no;
     userModel.delete(no).then(result => {
         res.status(200).send({result: result});
