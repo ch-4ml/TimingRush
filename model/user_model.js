@@ -39,8 +39,6 @@ class User {
             const user_no = user.no;
 
             conn.promise().query(sql, [user, user_no]).then(results => {
-                console.log('UPDATE');
-                let result = user;
                 console.log("MESSAGE: ", results[0]['info']);
                 resolve(result);
             }).catch(err => {

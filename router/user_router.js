@@ -2,15 +2,6 @@ const express = require('express');
 const userRouter = express.Router();
 const userModel = require('../model/user_model');
 
-// SELECTALL
-userRouter.get('/user', (req, res) => {
-    userModel.selectAll().then(result => {
-        res.status(200).send({result: result[0]});
-    }).catch(err => {
-        res.status(500).send({err: err});
-    });
-});
-
 // INSERT
 userRouter.post('/user', (req, res) => {
     const user = {
@@ -33,9 +24,6 @@ userRouter.post('/user', (req, res) => {
 userRouter.post('/user/:no', (req, res) => {
     const user = {
         no: req.params.no, 
-        id: req.body.id,
-        password: req.body.password, 
-        nickname: req.body.nickname, 
         chip: req.body.chip, 
         game_att: req.body.game_att,
         game_win: req.body.game_win
