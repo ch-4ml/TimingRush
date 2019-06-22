@@ -1,7 +1,15 @@
-// server initial
-아아아
-암이라ㅓ니럼ㅇ닐엄넒ㄴ
-ㄻ나ㅣ럼니럼ㄴ럼니ㅓㄹ
-가나다
-라마바
-사아자
+// Import modules
+const express = require('express');
+const app = express();
+
+// Middleware
+app.use(express.static('public'));
+
+// Router
+const router = require('./router');
+app.use(router);
+
+// Server initialize
+app.listen(3000, function() {
+    console.log("Run server");
+});
