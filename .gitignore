@@ -1,1 +1,3 @@
-node_modules/body-parser/package.json
+node_modules/
+package.json
+package-lock.json
