@@ -4,7 +4,8 @@ const config = {
     user : 'admin',
     password : '1q2w3e4r',
     port : 3306,
-    database : 'timingrush'
+    database : 'timingrush',
+    dateStrings: 'date'
 };
 const conn = mysql.createPool(config);
 
