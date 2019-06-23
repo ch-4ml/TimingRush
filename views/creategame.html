@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>TimingRush!! - CREATE GAME</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/main.css" />
+</head>
+<body>
+<section id="one" class="wrapper style2">
+    <div class="inner">
+        <section>
+            <div class="box">
+                <div class="content">
+                    <h2 class="align-center">CREATE GAME</h2>
+                    <hr />
+                    <form action="/game" method="post">
+                        <div class="field">
+                            <label for="gt">GAME TITLE</label>
+                            <input id="gt" name="title" type="text" placeholder="운동회 3번박">
+                        </div>
+                        <div class="field">
+                            <label for="wrs">당첨 범위 시작 값</label>
+                            <input id="wrs" name="range_begin" type="text" placeholder="ex) 4000">
+                        </div>
+                        <div class="field">
+                            <label for="wre">당첨 범위 끝 값</label>
+                            <input id="pw" name="range_end" type="text" placeholder="ex) 5000">
+                        </div>
+                        <div class="field">
+                            <label for="sd">Start Date</label>
+                            <input id="currentDatetime" type="datetime-local" name="start_date">
+                        </div>
+                        <div class="field">
+                            <label for="fd">Finish Date</label>
+                            <input id="currentDatetime" type="datetime-local" name="finish_date">
+                        </div>
+                        <ul class="actions fit">
+                            <li><input value="CREATE" class="button special fit" type="submit"></li>
+                        </ul>
+                    </form>
+                </div>
+            </section>
+            <div class="copyright">
+                &copy; Untitled Design: <a href="https://templated.co/">TEMPLATED</a>. Images <a
+                    href="https://unsplash.com/">Unsplash</a> Video <a href="http://coverr.co/">Coverr</a>.
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

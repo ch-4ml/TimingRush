@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>Timing Rush</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<header id="header">
+</header>
+    <section class="wrapper style2">
+        <div class="inner2">
+            <section>
+                <div class="box">
+                    <div class="content">
+                        <h2>게임 목록</h2>
+                        <a href="/creategame">추가하기</a>
+                        <br>
+                        <br>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>제목</th>
+                                    <th>Rush 횟수 제한</th>
+                                    <th>Rush 개수 제한</th>
+                                    <th>당첨 범위(시작)</th>
+                                    <th>당첨 범위(끝)</th>
+                                    <th>시작 시간</th>
+                                    <th>종료 시간</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% result.forEach(function (item,index){ %>
+                                <tr>
+                                    <td><%= item.title %></td>
+                                    <td><%= item.att_limit %></td>
+                                    <td><%= item.chip_limit %></td>
+                                    <td><%= item.range_begin %></td>
+                                    <td><%= item.range_end %></td>
+                                    <td><%= item.start_date %></td>
+                                    <td><%= item.finish_date %></td>
+                                </tr>
+                                <% })%>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+            </section>
+        </div>
+    </section>
+</body>
+</html>
