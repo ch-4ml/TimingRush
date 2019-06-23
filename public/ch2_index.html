@@ -1,5 +1,96 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+
+  <title>TimingRush!! Game-Room</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./css/main.css" />
+
+  <style>
+    .game_box {
+      width: 65%;
+      height: 600px;
+      float : left;
+    }
+
+    .chat_log {
+      width: 30%;
+      height: 600px;
+      float : right;
+    }
+
+    .name {
+      width: 10%;
+    }
+
+    .message {
+      width: 78.5%;
+    }
+
+    .chat {
+      width: 10%;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header id="header">
+  </header>
+
+  <section id="one" class="wrapper style2">
+    <div class="inner2">
+
+      <div>
+        <textarea id="gameBox" class="game_box" readonly></textarea>
+      </div>
+      <div>
+        <textarea id="chatLog" class="chat_log" readonly></textarea>
+      </div>
+
+      <form id="chat">
+        <input id="name" class="name" type="text" readonly>
+        <input id="message" class="message" type="text">
+        <input type="submit" class="chat" value="chat" />
+      </form>
+
+      <div id="box" class="box">
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.js"></script>
+        <script>
+
+        // var socket = io();
+        // $('#chat').on('submit', function (e) {
+        //   socket.emit('send message', $('#name').val(), $('#message').val());
+        //   $('#message').val("");
+        //   $("#message").focus();
+        //   e.preventDefault();
+        // });
+        // socket.on('receive message', function (msg) {
+        //   $('#chatLog').append(msg + "\n");
+        //   $('#chatLog').scrollTop($('#chatLog')[0].scrollHeight);
+        // });
+        // socket.on('change name', function (name) {
+        //   $('#name').val(name);
+        // });
+
+        </script>
+      </div>
+  </section>
+
+</body>
+
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
   <head>
     <meta charset="utf-8">
     <title>chat</title>
@@ -41,4 +132,4 @@
       });
     </script>
   </body>
-</html>
+</html> -->
