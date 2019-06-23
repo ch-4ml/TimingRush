@@ -471,7 +471,7 @@
 	}
 
 	.\-1u {
-		margin-left: 8.33333%;
+		margin-left: 8.33333%; /*원래는 8*/
 	}
 
 	@media screen and (max-width: 1680px) {
@@ -1544,7 +1544,7 @@
 		}
 
 		.\-1u\28xsmall\29 {
-			margin-left: 8.33333%;
+			margin-left: 8.33333%; /*원래 8*/
 		}
 
 	}
@@ -1795,6 +1795,18 @@
 	}
 
 /* Box */
+
+   .game_box {
+	width: 60%;
+	height: 600px;
+	float: left;
+  }
+
+  .chat_log {
+	width: 40%;
+	height: 600px;
+	float: left;
+  }
 
 	.box {
 		margin-bottom: 2rem;
