@@ -2663,6 +2663,12 @@
 			width: 30rem; /*80*/
 		}
 
+		.wrapper > .inner2 {
+			margin: 0 auto;
+			width: 75rem; /*80*/
+		}
+
+
 		.wrapper.style1 {
 			background-color: #5AA6ED;
 			color: #d6e9fb;
@@ -3341,6 +3347,10 @@
 		@media screen and (max-width: 1280px) {
 
 			.wrapper > .inner {
+				width: 30rem;
+			}
+
+			.wrapper > .inner2 {
 				width: 75rem;
 			}
 
@@ -3349,6 +3359,10 @@
 		@media screen and (max-width: 980px) {
 
 			.wrapper > .inner {
+				width: 90%;
+			}
+
+			.wrapper > .inner2 {
 				width: 90%;
 			}
 
@@ -3421,7 +3435,7 @@
 	}
 
 	#header {
-		background: rgba(0, 0, 0, 0.75);
+		background: rgba(0, 0, 0, 1);
 		color: #a6a6a6;
 		cursor: default;
 		height: 3.25em;
