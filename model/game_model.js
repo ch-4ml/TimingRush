@@ -4,15 +4,12 @@ class Game {
     // 게임 생성
     insert(game) {
         return new Promise((resolve, reject) => {
-            console.log(game);
             const sql = 'INSERT INTO game SET ?';
             conn.promise().query(sql, game).then(results => {
-                console.log('INSERT');
                 let result = game;
                 result.no = results[0]['insertId'];
                 resolve(result);
             }).catch(err => {
-                console.log('INSERT FAILED: ', err);
                 reject(err);
             });
         });
@@ -23,10 +20,8 @@ class Game {
         const sql = 'SELECT no, title, att_limit, chip_limit, range_begin, range_end, start_date, finish_date FROM game WHERE status=1';
         return new Promise((resolve, reject) => {
             conn.promise().query(sql).then(results => {
-                console.log('SELECT');
                 resolve(results);
             }).catch(err => {
-                console.error('SELECTALL FAILED: ', err);
                 reject(err);
             });
         });
@@ -38,10 +33,8 @@ class Game {
         return new Promise((resolve, reject) => {
             const game_no = no;
             conn.promise().query(sql, game_no).then(results => {
-                console.log('SELECT GAME');
                 resolve(results);
             }).catch(err => {
-                console.error('SELECTONE FAILED: ', err);
                 reject(err);
             });
         });
@@ -53,10 +46,8 @@ class Game {
             const sql = 'UPDATE game SET ? WHERE no=?';
             const game_no = game.no;
             conn.promise().query(sql, [game, game_no]).then(results => {
-                console.log("MESSAGE: ", results[0]['info']);
                 resolve('SUCCESS UPDATE GAME');
             }).catch(err => {
-                console.error('UPDATE FAILED: ', err);
                 reject(err)
             });
         });
@@ -68,11 +59,11 @@ class Game {
             const sql = 'UPDATE game SET ? WHERE no=?';
             const param = {status: 0};
             conn.promise().query(sql, [param, no]).then(results => {
-                console.log('DELETE GAME');
-                console.log('MESSAGE: ', results[0]['info']);
                 resolve(results);
-            })
-        })
+            }).catch(err => {
+                reject(err);
+            });
+        });
     }
 }
 module.exports = new Game();

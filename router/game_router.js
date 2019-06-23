@@ -37,7 +37,7 @@ gameRouter.post('/game', (req, res) => {
     console.log(duration / 1000 + '초 지속');
     gameModel.insert(game).then(result => {
         setTimeout(() => { gameModel.delete(result.no).then(); }, duration);
-        res.status(200).send({result: result});
+        res.redirect('/game');
     }).catch(err => {
         res.status(500).send({err: err});
     });
@@ -46,7 +46,11 @@ gameRouter.post('/game', (req, res) => {
 // SELECTALL
 gameRouter.get('/game', (req, res) => {
     gameModel.selectOn().then(result => {
-        res.render('gamelist', {result: result[0]});
+        const data = {
+            result: result[0],
+            user: req.session.user
+        }
+        res.render('gamelist', {data: data});
     }).catch(err => {
         res.status(500).send({err: err});
     });
@@ -63,7 +67,10 @@ gameRouter.get('/game/:no', (req, res) => {
 });
 
 gameRouter.get('/creategame', (req, res) => {
-    res.redirect('/creategame.html');
+    const data = {
+        user: req.session.user
+    }
+    res.render('creategame', {data: data});
 });
 
 // UPDATE
