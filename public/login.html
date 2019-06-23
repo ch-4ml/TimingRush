@@ -15,17 +15,17 @@
         <div class="content">
           <h2 class="align-center">Login</h2>
           <hr />
-          <form action="#" method="post">
+          <form action="/login" method="post">
             <div class="field">
               <label for="id">ID</label>
               <input name="id" id="id" type="text" placeholder="ID">
             </div>
             <div class="field">
               <label for="pw">PW</label>
-              <input name="pw" id="pw" type="password" placeholder="PASSWORD">
+              <input name="password" id="pw" type="password" placeholder="PASSWORD">
             </div>
             <ul class="actions fit">
-              <li><input value="Sign Up" class="button special fit" type="submit"></li>
+              <li><input value="Sign Up" class="button special fit" type="button" onclick="javascript:location.href='/signup'"></li>
               <li><input value="Login" class="button special fit" type="submit"></li>
             </ul>
           </form>

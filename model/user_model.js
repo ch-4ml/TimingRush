@@ -63,7 +63,7 @@ class User {
     }
 
     // 단일 회원 조회
-    selectOne(no) {
+    selectOneByUserNo(no) {
         const sql = 'SELECT * FROM user WHERE no=?';
         return new Promise((resolve, reject) => {
             conn.promise().query(sql, no).then(results => {
@@ -76,7 +76,20 @@ class User {
         });
     }
 
-    // 회원 정보가 변경되는 경우
+    // 로그인
+    // selectOneByUser(user) {
+    //     const sql = 'SELECT * FROM user WHERE ?';
+    //     return new Promise((resolve, reject) => {
+    //         conn.promise().query(sql, user).then(results => {
+    //             console.log(results);
+    //             resolve(results[0][0]);
+    //         }).catch(err => {
+    //             reject(err);
+    //         });
+    //     });
+    // }
+
+    // 회원 정보 변경
     update(user) {
         return new Promise((resolve, reject) => {
             const sql = 'UPDATE user SET ? WHERE no=?';
@@ -84,7 +97,7 @@ class User {
 
             conn.promise().query(sql, [user, user_no]).then(results => {
                 console.log("MESSAGE: ", results[0]['info']);
-                resolve('SUCCESS UPDATE USER');
+                resolve('UPDATE SUCCESS');
             }).catch(err => {
                 console.error('UPDATE FAILED: ', err);
                 reject(err);

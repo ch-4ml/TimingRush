@@ -1,17 +1,15 @@
 const express = require('express');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 const userRouter = express.Router();
 const userModel = require('../model/user_model');
 
-// INSERT
-userRouter.post('/user', (req, res) => {
-    const user = {
-        id: req.body.id,
-        password: req.body.password, 
-        nickname: req.body.nickname, 
-        chip: 5000, 
-        game_att: 0,
-        game_win: 0
-    };
+userRouter.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    store: new FileStore()
+}));
 
 // SELECTALL
 userRouter.get('/user', (req, res) => {
@@ -25,14 +23,14 @@ userRouter.get('/user', (req, res) => {
 // SELECTONE
 userRouter.get('/user/:no', (req, res) => {
     const user_no = req.params.no;
-    userModel.selectOne(user_no).then(result => {
+    userModel.selectOneByUserNo(user_no).then(result => {
         res.status(200).send({result: result});
     }).catch(err => {
         res.status(500).send({err: err});
     });
-})
+});
 
-// UPDATE(투자 시 접근)
+// UPDATE IN GAME
 userRouter.post('/user/:no', (req, res) => {
     const user = {
         no: req.params.no, 
@@ -46,6 +44,68 @@ userRouter.post('/user/:no', (req, res) => {
     }).catch(err => {
         res.status(500).send({err: err});
     });
+});
+
+// SIGNUP FORM
+userRouter.get('/signup', (req, res) => {
+    res.redirect('/signup.html');
+});
+
+// SIGNUP
+userRouter.post('/signup', (req, res) => {
+    const user = {
+        id: req.body.id,
+        password: req.body.password, 
+        nickname: req.body.nickname, 
+        chip: 5000, 
+        game_att: 0,
+        game_win: 0
+    };
+
+    userModel.insert(user).then(result => {
+        res.status(200).send({result: result});
+    }).catch(err => {
+        res.status(500).send({err: err});
+    });
+});
+
+// LOGIN FORM
+userRouter.get('/login', (req, res) => {
+    res.redirect('/login.html');
+});
+
+// LOGIN
+userRouter.post('/login', (req, res) => {
+    const user = {
+        id: req.body.id,
+        password: req.body.password
+    };
+    userModel.selectOneByUser(user).then(result => {
+        if(req.session.user) {
+            console.log('이미 로그인되어 있음');
+        } else {
+            req.session.user = {
+                no: result[0][0].no,
+                id: result[0][0].id,
+                nickname: result[0][0].nickname,
+                chip: result[0][0].chip,
+                game_att: result[0][0].game_att,
+                game_win: result[0][0].game_win
+            };
+        }
+    });
+});
+
+// LOGOUT
+userRouter.get('/logout', (req, res) => {
+    if(req.session.user) {
+        req.session.destroy(err => {
+            console.log('세션 삭제 실패: ', err);
+            return;
+        });
+        console.log('세션 삭제 성공');
+        res.redirect('/login.html');
+    }
 });
 
 // DELETE

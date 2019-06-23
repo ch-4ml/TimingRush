@@ -1,7 +1,6 @@
 const express = require('express');
 const gameRouter = express.Router();
 const gameModel = require('../model/game_model');
-const dateformat = require('dateformat');
 
 // INSERT
 gameRouter.post('/game', (req, res) => {
@@ -17,10 +16,9 @@ gameRouter.post('/game', (req, res) => {
     const att_limit = getRandom(1, getDigit(end_point));
     // 한 사람이 한 번에 투자할 수 있는 칩의 개수
     const chip_limit = getRandom(parseInt(end_point / 100 * 5), parseInt(end_point / 100 * 20));
-
     const start_date = req.body.start_date;
     const finish_date = req.body.finish_date;
-    
+    console.log(start_date, finish_date);
     const game = {
         title: req.body.title,
         chip: 0,
@@ -53,7 +51,7 @@ gameRouter.get('/game', (req, res) => {
 // SELECTONE
 gameRouter.get('/game/:no', (req, res) => {
     const game_no = req.params.no;
-    gameModel.selectOne(game_no).then(result => {
+    gameModel.selectOneByGameNo(game_no).then(result => {
         res.status(200).send({result: result});
     }).catch(err => {
         res.status(500).send({err: err});
@@ -61,17 +59,17 @@ gameRouter.get('/game/:no', (req, res) => {
 });
 
 // UPDATE
-gameRouter.post('/game/:no', (req, res) => {
-    const game = {
-        chip: req.body.chip
-    };
+// gameRouter.post('/game/:no', (req, res) => {
+//     const game = {
+//         chip: req.body.chip
+//     };
 
-    gameModel.update(game).then(result => {
-        res.status(200).send({result: result});
-    }).catch(err => {
-        res.status(500).send({err: err});
-    });
-});
+//     gameModel.update(game).then(result => {
+//         res.status(200).send({result: result});
+//     }).catch(err => {
+//         res.status(500).send({err: err});
+//     });
+// });
 
 // DELETE
 gameRouter.get('/deleteGame/:no', (req, res) => {
