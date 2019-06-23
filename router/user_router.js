@@ -98,6 +98,7 @@ userRouter.post('/login', (req, res) => {
                     game_att: result[0][0].game_att,
                     game_win: result[0][0].game_win
                 };
+                console.log(req.session.user);
                 res.redirect('/game');
             }
         }

@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="./css/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+          crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -37,14 +41,14 @@
                             </thead>
                             <tbody>
                                 <% result.forEach(function (item,index){ %>
-                                <tr>
-                                    <td><%= item.title %></td>
-                                    <td><%= item.att_limit %></td>
-                                    <td><%= item.chip_limit %></td>
-                                    <td><%= item.range_begin %></td>
-                                    <td><%= item.range_end %></td>
-                                    <td><%= item.start_date %></td>
-                                    <td><%= item.finish_date %></td>
+                                <tr onclick="location.href='/join/<%= item.no %>'">
+                                        <td><%= item.title %></td>
+                                        <td><%= item.att_limit %></td>
+                                        <td><%= item.chip_limit %></td>
+                                        <td><%= item.range_begin %></td>
+                                        <td><%= item.range_end %></td>
+                                        <td><%= item.start_date %></td>
+                                        <td><%= item.finish_date %></td>
                                 </tr>
                                 <% })%>
                             </tbody>

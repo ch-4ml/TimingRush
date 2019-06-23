@@ -32,7 +32,11 @@ router.get('/join/:game_no', (req, res) => {
         dataModel.selectCountByUserNoAndGameNo(user_no, game_no).then(result => {
             game.att_count = result[0][0]['COUNT(no)'];
             console.log(game);
-            res.status(200).send(game).redirect('/game.html');
+            const data = {
+                game: game,
+                user: req.session.user
+            };
+            res.render('game', {data: data});
         }).catch(err => res.status(500).send(err));
     }).catch(err => res.status(500).send(err));    
 });

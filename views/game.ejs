@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>TimingRush!! Game-Room</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../public/css/main.css" />
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+          crossorigin="anonymous"></script>
+</head>
+
+<body>
+<%= data.game.title %>
+<%= data.game.att_limit %>
+<%= data.game.chip_limit %>
+<%= data.game.range_begin %>
+<%= data.game.range_end %>
+<%= data.game.start_date %>
+<%= data.game.finish_date %>
+<%= data.user.no %>
+<%= data.user.id %>
+<%= data.user.nickname %>
+<%= data.user.chip %>
+<%= data.user.game_att %>
+<%= data.user.game_win %>
+  <header id="header">
+  </header>
+
+  <section id="one" class="wrapper style2">
+    <div class="inner2">
+      <br>
+      <br>
+      <br>
+      <br>
+      <section>
+        <form method="post" action="#" id="rushform">
+          <div>
+            <textarea id="gameBox" class="game_box" readonly></textarea>
+            <textarea id="chatLog" class="chat_log" readonly></textarea>
+          </div>
+          <div class="row uniform">
+            <div class="5u 12u$(xsmall)">
+              <input type="text" name="chip" id="bet" value="" placeholder="금액" />
+            </div>
+            <div class="2u 12u$(xsmall)">
+              <input type="button" value="RUSH" class="button fit" id="rush"/>
+            </div>
+            <div class="4u 12u$(xsmall)">
+              <input type="text" class="message" id="message" />
+            </div>
+            <div class="1u 12u$(xsmall)">
+              <input type="submit" class="submit special small" value="chat" id="chat" />
+            </div>
+          </div>
+        </form>
+          <div id="box" class="box">
+            <script>
+
+            </script>
+      </section>
+    </div>
+  </section>
+</body>
+</html>
