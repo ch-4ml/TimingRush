@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>TimingRush!! - Sign up</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../public/css/main.css" />
+</head>
+<body>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script>
+      $(function() {
+        $('#signup').on('click', function() {
+          var queryString = $('#signupform').serialize();
+          $.ajax({
+            type: 'POST',
+            url: '/signup',
+            data: queryString,
+            dataType: 'json',
+            error: function(xhr, status, error) {
+              alert(error);
+            },
+            success: function(json) {
+              if(typeof(json.result) == "object") {
+                alert('회원가입 완료');
+                location.href='/login';
+              }
+              else alert(json.result);
+            }
+          });
+        });
+      });
+    </script>
+
+<section id="one" class="wrapper style2">
+  <div class="inner">
+    <section>
+      <div class="box">
+        <div class="content">
+          <h2 class="align-center">SIGN UP</h2>
+          <hr />
+          <form action="/signup" method="post" id="signupform">
+            <div class="field">
+              <label for="id">ID</label>
+              <input id="id" name="id" type="text" placeholder="ID">
+            </div>
+            <div class="field">
+              <label for="pw">PW</label>
+              <input id="pw" name="password" type="password" placeholder="PASSWORD">
+            </div>
+            <div class="field">
+              <label for="nickname">Nickname</label>
+              <input id="nickname" name="nickname" type="text" placeholder="NICKNAME">
+            </div>
+            <ul class="actions fit">
+              <li><input value="Sign Up" id="signup" class="button special fit" type="button"></li>
+          </ul>
+          </form>
+        </div>
+      </div>
+    </section>
+    <div class="copyright">
+      &copy; Untitled Design: <a href="https://templated.co/">TEMPLATED</a>. Images <a
+        href="https://unsplash.com/">Unsplash</a> Video <a href="http://coverr.co/">Coverr</a>.
+    </div>
+  </div>
+</section>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>Timing Rush</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/css/main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+          integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+          crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo"><a href="/game"> TimingRush <span> by PchM </span></a></div>
+        <span class=span1> <%= data.user.nickname %> </span> 
+        <span class=span2> <%= data.user.chip %> </span> 
+        <span class=span2> CHIPS </span>
+        <span class=span2><a href="/logout">LOGOUT</a></span>
+    </header>
+
+    <section class="wrapper style2">
+        <div class="inner2">
+            <section>
+                <div class="box">
+                    <div class="content">
+                        <h2>게임 목록</h2>
+                        <a href="/creategame">추가하기</a>
+                        <br>
+                        <br>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>제목</th>
+                                    <th>Rush 횟수 제한</th>
+                                    <th>Rush 개수 제한</th>
+                                    <th>당첨 범위(시작)</th>
+                                    <th>당첨 범위(끝)</th>
+                                    <th>시작 시간</th>
+                                    <th>종료 시간</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% data.result.forEach(function (item,index){ %>
+                                <tr onclick="location.href='/join/<%= item.no %>'">
+                                        <td><%= item.title %></td>
+                                        <td><%= item.att_limit %></td>
+                                        <td><%= item.chip_limit %></td>
+                                        <td><%= item.range_begin %></td>
+                                        <td><%= item.range_end %></td>
+                                        <td><%= item.start_date %></td>
+                                        <td><%= item.finish_date %></td>
+                                </tr>
+                                <% })%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</body>
+
+</html>
