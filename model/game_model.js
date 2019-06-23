@@ -4,6 +4,7 @@ class Game {
     // 게임 생성
     insert(game) {
         return new Promise((resolve, reject) => {
+            console.log(game);
             const sql = 'INSERT INTO game SET ?';
             conn.promise().query(sql, game).then(results => {
                 console.log('INSERT');
@@ -69,7 +70,7 @@ class Game {
             conn.promise().query(sql, [param, no]).then(results => {
                 console.log('DELETE GAME');
                 console.log('MESSAGE: ', results[0]['info']);
-                resolve(result);
+                resolve(results);
             })
         })
     }

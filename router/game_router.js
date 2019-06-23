@@ -18,6 +18,7 @@ gameRouter.post('/game', (req, res) => {
     const chip_limit = getRandom(parseInt(end_point / 100 * 5), parseInt(end_point / 100 * 20));
     const start_date = req.body.start_date;
     const finish_date = req.body.finish_date;
+    console.log('body: ', req.body);
     console.log(start_date, finish_date);
     const game = {
         title: req.body.title,
@@ -31,8 +32,11 @@ gameRouter.post('/game', (req, res) => {
         start_date: start_date,
         finish_date: finish_date
     };
-    
+    console.log(game);
+    const duration = new Date(finish_date).getTime() - new Date(start_date).getTime();
+    console.log(duration / 1000 + '초 지속');
     gameModel.insert(game).then(result => {
+        setTimeout(() => { gameModel.delete(result.no).then(); }, duration);
         res.status(200).send({result: result});
     }).catch(err => {
         res.status(500).send({err: err});
@@ -56,6 +60,10 @@ gameRouter.get('/game/:no', (req, res) => {
     }).catch(err => {
         res.status(500).send({err: err});
     });
+});
+
+gameRouter.get('/creategame', (req, res) => {
+    res.redirect('/creategame.html');
 });
 
 // UPDATE
