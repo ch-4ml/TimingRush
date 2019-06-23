@@ -8,44 +8,38 @@
     <link rel="stylesheet" href="./css/main.css" />
 </head>
 
-<body>
-
-    <header id="header">
-    </header>
-
-    <section id="one" class="wrapper style2">
-        <div class="inner">
-            <section>
-                <div class="box">
-                    <div class="content">
-                        <h2 class="align-center">CREATE GAME</h2>
-                        <hr />
-                        <form action="#" method="post">
-                            <div class="field">
-                                <label for="gt">GAME TITLE</label>
-                                <input name="gt" id="gt" type="text" placeholder="ex) 운동회 3번박">
-                            </div>
-                            <div class="field">
-                                <label for="wrs">당첨 범위 시작 값</label>
-                                <input name="wrs" id="wrs" type="text" placeholder="ex) 4000">
-                            </div>
-                            <div class="field">
-                                <label for="wre">담첨 범위 끝 값</label>
-                                <input name="pw" id="pw" type="text" placeholder="ex) 5000">
-                            </div>
-                            <div class="field">
-                                <label for="sd">Start Date</label>
-                                <input name="sd" id="currentDatetime" type="datetime-local">
-                            </div>
-                            <div class="field">
-                                <label for="fd">Finish Date</label>
-                                <input name="fd" id="currentDatetime" type="datetime-local">
-                            </div>
-                            <ul class="actions fit">
-                                <li><input value="CREATE" class="button special fit" type="submit"></li>
-                            </ul>
-                        </form>
-                    </div>
+<section id="one" class="wrapper style2">
+    <div class="inner">
+        <section>
+            <div class="box">
+                <div class="content">
+                    <h2 class="align-center">CREATE GAME</h2>
+                    <hr />
+                    <form action="/game" method="post">
+                        <div class="field">
+                            <label for="gt">GAME TITLE</label>
+                            <input name="gt" id="gt" name="title" type="text" placeholder="운동회 3번박">
+                        </div>
+                        <div class="field">
+                            <label for="wrs">당첨 범위 시작 값</label>
+                            <input name="wrs" id="wrs" name="range_begin" type="text" placeholder="ex) 4000">
+                        </div>
+                        <div class="field">
+                            <label for="wre">담첨 범위 끝 값</label>
+                            <input name="pw" id="pw" name="range_end" type="text" placeholder="ex) 5000">
+                        </div>
+                        <div class="field">
+                            <label for="sd">Start Date</label>
+                            <input name="sd" id="currentDatetime" type="datetime-local" name="start_date">
+                        </div>
+                        <div class="field">
+                            <label for="fd">Finish Date</label>
+                            <input name="fd" id="currentDatetime" type="datetime-local" name="finish_date">
+                        </div>
+                        <ul class="actions fit">
+                            <li><input value="CREATE" class="button special fit" type="submit"></li>
+                        </ul>
+                    </form>
                 </div>
             </section>
             <div class="copyright">
@@ -53,8 +47,6 @@
                     href="https://unsplash.com/">Unsplash</a> Video <a href="http://coverr.co/">Coverr</a>.
             </div>
         </div>
-
-    </section>
-</body>
-
+    </div>
+</section>
 </html>

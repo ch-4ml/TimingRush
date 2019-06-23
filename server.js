@@ -11,6 +11,10 @@ app.use(bodyParser.json());
 const router = require('./router/router');
 app.use(router);
 
+app.get('/', (req, res) => {
+    res.redirect('/login.html');
+});
+
 // Server initialize
 app.listen(3000, function() {
     console.log("Run server");

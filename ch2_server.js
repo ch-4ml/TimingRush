@@ -11,7 +11,7 @@ var count=1;
 io.on('connection', function(socket){ //3
   console.log('user connected: ', socket.id);  //3-1
   var name = "user" + count++;                 //3-1
-  io.to(socket.id).emit('change name',name);   //3-1
+  io.to(socket.id).emit('change name', name);   //3-1
 
   socket.on('disconnect', function(){ //3-2
     console.log('user disconnected: ', socket.id);

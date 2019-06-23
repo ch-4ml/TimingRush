@@ -5,7 +5,7 @@ class Game {
     insert(game) {
         return new Promise((resolve, reject) => {
             const sql = 'INSERT INTO game SET ?';
-            conn.promise().query(sql, game_no).then(results => {
+            conn.promise().query(sql, game).then(results => {
                 console.log('INSERT');
                 let result = game;
                 result.no = results[0]['insertId'];
@@ -23,9 +23,6 @@ class Game {
         return new Promise((resolve, reject) => {
             conn.promise().query(sql).then(results => {
                 console.log('SELECT');
-                for(const row of results) {
-                    console.log(row);
-                }
                 resolve(results);
             }).catch(err => {
                 console.error('SELECTALL FAILED: ', err);
@@ -35,15 +32,12 @@ class Game {
     }
 
     // 게임 선택
-    selectOne(no) {
-        const sql = 'SELECT title, att_limit, chip_limit, start_date, finish_date FROM game WHERE no=?'
+    selectOneByGameNo(no) {
+        const sql = 'SELECT * FROM game WHERE no=?'
         return new Promise((resolve, reject) => {
             const game_no = no;
             conn.promise().query(sql, game_no).then(results => {
                 console.log('SELECT GAME');
-                for(const row of results) {
-                    console.log(row);
-                }
                 resolve(results);
             }).catch(err => {
                 console.error('SELECTONE FAILED: ', err);
