@@ -68,9 +68,6 @@ class User {
         return new Promise((resolve, reject) => {
             conn.promise().query(sql, no).then(results => {
                 console.log('SELECT');
-                for(const row of results[0]) {
-                    //console.log(row);
-                }
                 resolve(results);
             }).catch(err => {
                 console.error('SELECTONE FAILED: ', err);

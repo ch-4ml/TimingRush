@@ -23,9 +23,6 @@ class Game {
         return new Promise((resolve, reject) => {
             conn.promise().query(sql).then(results => {
                 console.log('SELECT');
-                for(const row of results) {
-                    console.log(row);
-                }
                 resolve(results);
             }).catch(err => {
                 console.error('SELECTALL FAILED: ', err);
@@ -41,9 +38,6 @@ class Game {
             const game_no = no;
             conn.promise().query(sql, game_no).then(results => {
                 console.log('SELECT GAME');
-                for(const row of results) {
-                    console.log(row);
-                }
                 resolve(results);
             }).catch(err => {
                 console.error('SELECTONE FAILED: ', err);

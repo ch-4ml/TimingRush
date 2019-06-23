@@ -13,13 +13,6 @@ userRouter.post('/user', (req, res) => {
         game_win: 0
     };
 
-    userModel.insert(user).then(result => {
-        res.status(200).send({result: result});
-    }).catch(err => {
-        res.status(500).send({err: err});
-    });
-});
-
 // SELECTALL
 userRouter.get('/user', (req, res) => {
     userModel.selectAll().then(result => {
