@@ -18,7 +18,7 @@ const router = require('./router/router');
 app.use(router);
 
 app.get('/', (req, res) => {
-    res.redirect('/login.html');
+    res.redirect('/views/login.html');
 });
 
 // Server initialize
