@@ -20,7 +20,7 @@ class Game {
 
     // 진행중인(활성화) 게임 목록
     selectOn() {
-        const sql = 'SELECT title, att_limit, chip_limit, start_date, finish_date FROM game WHERE status=1';
+        const sql = 'SELECT title, att_limit, chip_limit, range_begin, range_end, start_date, finish_date FROM game WHERE status=1';
         return new Promise((resolve, reject) => {
             conn.promise().query(sql).then(results => {
                 console.log('SELECT');

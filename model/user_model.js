@@ -18,7 +18,6 @@ class User {
                         break;
                     }
                 }
-                console.log("flag: ", flag);
                 switch(flag) {
                     case 1:
                         resolve("중복된 아이디입니다.");
@@ -77,17 +76,16 @@ class User {
     }
 
     // 로그인
-    // selectOneByUser(user) {
-    //     const sql = 'SELECT * FROM user WHERE ?';
-    //     return new Promise((resolve, reject) => {
-    //         conn.promise().query(sql, user).then(results => {
-    //             console.log(results);
-    //             resolve(results[0][0]);
-    //         }).catch(err => {
-    //             reject(err);
-    //         });
-    //     });
-    // }
+    selectOneByUser(user) {
+        const sql = 'SELECT * FROM user WHERE id=? and password=?';
+        return new Promise((resolve, reject) => {
+            conn.promise().query(sql, [user.id, user.password]).then(results => {
+                resolve(results);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
 
     // 회원 정보 변경
     update(user) {

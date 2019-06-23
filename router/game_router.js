@@ -46,7 +46,7 @@ gameRouter.post('/game', (req, res) => {
 // SELECTALL
 gameRouter.get('/game', (req, res) => {
     gameModel.selectOn().then(result => {
-        res.status(200).send({result: result[0]});
+        res.render('gamelist',{result: result[0]});
     }).catch(err => {
         res.status(500).send({err: err});
     });

@@ -2,35 +2,32 @@
 <html>
 
 <head>
-  <title>TimingRush!! - Sign up</title>
+  <title>TimingRush!! - Login</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="./css/main.css" />
 </head>
-
+<body>
 <section id="one" class="wrapper style2">
   <div class="inner">
     <section>
       <div class="box">
         <div class="content">
-          <h2 class="align-center">SIGN UP</h2>
+          <h2 class="align-center">Login</h2>
           <hr />
-          <form action="/signup" method="post">
+          <form action="/login" method="post">
             <div class="field">
               <label for="id">ID</label>
-              <input name="Id" id="id" name="id" type="text" placeholder="ID">
+              <input name="id" id="id" type="text" placeholder="ID">
             </div>
             <div class="field">
               <label for="pw">PW</label>
-              <input name="pw" id="pw" name="password" type="password" placeholder="PASSWORD">
-            </div>
-            <div class="field">
-              <label for="nickname">Nickname</label>
-              <input name="nickname" id="nickname" name="nickname" type="text" placeholder="NICKNAME">
+              <input name="password" id="pw" type="password" placeholder="PASSWORD">
             </div>
             <ul class="actions fit">
-              <li><input value="Sign Up" class="button special fit" type="submit"></li>
-          </ul>
+              <li><input value="Sign Up" class="button special fit" type="button" onclick="javascript:location.href='/signup'"></li>
+              <li><input value="Login" class="button special fit" type="submit"></li>
+            </ul>
           </form>
         </div>
       </div>
@@ -41,6 +38,6 @@
     </div>
   </div>
 </section>
-
+</body>
 
 </html>

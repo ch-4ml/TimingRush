@@ -61,11 +61,14 @@ userRouter.post('/signup', (req, res) => {
         game_att: 0,
         game_win: 0
     };
+    console.log(user);
 
     userModel.insert(user).then(result => {
         res.status(200).send({result: result});
+        console.log('result: ', result);
     }).catch(err => {
         res.status(500).send({err: err});
+        console.log('err: ', err);
     });
 });
 
@@ -81,18 +84,24 @@ userRouter.post('/login', (req, res) => {
         password: req.body.password
     };
     userModel.selectOneByUser(user).then(result => {
-        if(req.session.user) {
-            console.log('이미 로그인되어 있음');
-        } else {
-            req.session.user = {
-                no: result[0][0].no,
-                id: result[0][0].id,
-                nickname: result[0][0].nickname,
-                chip: result[0][0].chip,
-                game_att: result[0][0].game_att,
-                game_win: result[0][0].game_win
-            };
+        console.log('result: ', result[0][0]);
+        if(result[0][0] != undefined) {
+            if(req.session.user) {
+                console.log('이미 로그인되어 있음');
+                res.redirect('/game');
+            } else {
+                req.session.user = {
+                    no: result[0][0].no,
+                    id: result[0][0].id,
+                    nickname: result[0][0].nickname,
+                    chip: result[0][0].chip,
+                    game_att: result[0][0].game_att,
+                    game_win: result[0][0].game_win
+                };
+                res.redirect('/game');
+            }
         }
+        else {}
     });
 });
 
