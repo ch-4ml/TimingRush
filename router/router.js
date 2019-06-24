@@ -7,7 +7,6 @@ const dataRouter = require('./data_router');
 const userModel = require('../model/user_model');
 const gameModel = require('../model/game_model');
 const dataModel = require('../model/data_model');
-const dateformat = require('dateformat');
 const moment = require('moment'); require('moment-timezone');
 moment.tz.setDefault('Asia/Seoul');
 
@@ -31,11 +30,13 @@ router.get('/join/:game_no', (req, res) => {
             finish_date: result[0][0].finish_date
         }
         dataModel.selectCountByUserNoAndGameNo(user_no, game_no).then(result => {
-            game.att_count = result[0][0]['COUNT(no)'];
+            const att_count = result[0][0]['COUNT(no)'];
+            console.log(att_count);
             console.log(game);
             const data = {
                 game: game,
-                user: req.session.user
+                user: req.session.user,
+                att_count: att_count
             };
             res.render('game', {data: data});
         }).catch(err => {res.status(500).send(err)});
@@ -46,15 +47,13 @@ router.get('/join/:game_no', (req, res) => {
 router.post('/join/:game_no', (req, res) => {
     const game_no = req.params.game_no;
     let user = req.session.user;
-    const rush_chip = req.body.chip;
+    const rush_chip = parseInt(req.body.chip);
     if(rush_chip > user.chip) {
-        res.status(500).send("칩이 부족합니다.").redirect('/join/' + game_no);
+        res.status(500).send("칩이 부족합니다.");
     }
     dataModel.selectCountByUserNoAndGameNo(user.no, game_no).then(result => {
-        const att_count = result[0][0]['COUNT(no)']
-        console.log('game_no: ', game_no);
-        console.log('user_no:', user.no);
-        console.log('att_count: ', att_count);
+        let att_count = result[0][0]['COUNT(no)'];
+
         if(att_count == 0) user.game_att += 1;
         gameModel.selectOneByGameNo(game_no).then(result => {
             const game = result[0][0];
@@ -85,6 +84,7 @@ router.post('/join/:game_no', (req, res) => {
                 user.game_win += 1; 
                 data.win_check = 1;
             }
+            att_count += 1;
             game.chip += rush_chip;
             user.chip -= rush_chip;
             dataModel.insert(data).then(result => {
@@ -93,7 +93,12 @@ router.post('/join/:game_no', (req, res) => {
                         userModel.selectOneByUserNo(user_no).then(result => { // 6
                             req.session.user = result[0][0];
                             gameModel.selectOneByGameNo(game.no).then(result => { // 7
-                               res.status(200).send(result[0][0]);
+                                const data = {
+                                    user: req.session.user,
+                                    game: result[0][0],
+                                    att_count: att_count
+                                };
+                               res.status(200).send({data: data});
                             }).catch(err => {res.status(500).send(err)});
                         }).catch(err => {res.status(500).send(err)});
                     }).catch(err => {res.status(500).send(err)});

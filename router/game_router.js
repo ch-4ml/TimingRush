@@ -52,6 +52,7 @@ gameRouter.get('/game', (req, res) => {
         }
         res.render('gamelist', {data: data});
     }).catch(err => {
+        console.log("Error here: ", err);
         res.status(500).send({err: err});
     });
 });
