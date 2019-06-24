@@ -6,7 +6,7 @@ const dataModel = require('../model/data_model');
 dataRouter.get('/data', (req, res) => {
     dataModel.selectAll().then(results => {
         const data = {
-            result: result[0],
+            result: results[0],
             user: req.session.user
         }
         res.render('data', {data: data});
